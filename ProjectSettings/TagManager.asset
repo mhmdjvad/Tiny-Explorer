@@ -10,11 +10,12 @@ TagManager:
   - ExitDoor_key
   - BedRoom_Door
   - BathRoom_Door
+  - pushable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Pushable
   - Water
   - UI
   - 
