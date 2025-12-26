@@ -3,7 +3,7 @@
 public class KeyItem : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 100f; // سرعت چرخش
-
+    public AudioSource KeySound;
     void Update()
     {
         // خط کد برای چرخش همیشگی کلید به دور خودش (محور Y)
@@ -23,6 +23,10 @@ public class KeyItem : MonoBehaviour
                 // فرستادن تگ همین کلید به اسکریپت UI
                 uiManager.ShowKeyOnUI(gameObject.tag);
             }
+
+            // play sound track
+            //KeySound = GetComponent<AudioSource>();
+            KeySound.Play();
 
             // حذف کلید از صحنه
             Destroy(gameObject);

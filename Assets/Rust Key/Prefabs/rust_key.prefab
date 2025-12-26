@@ -138,4 +138,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56775bd0fd339a447b2fd40b81e294f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KeySound: {fileID: 8300000, guid: 699c5f9cd10e36044b58818d465a378a, type: 3}
   rotationSpeed: 100
