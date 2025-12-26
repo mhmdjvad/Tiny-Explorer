@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f75f5f681d77dc24e8cb0d12fbbfc6d9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 239952
+  packageName: pixel low poly contemporary househouse
+  packageVersion: 2
+  assetPath: Assets/contemporary house/scripits/MouseLook.cs
+  uploadId: 611257

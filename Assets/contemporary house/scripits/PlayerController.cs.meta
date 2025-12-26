@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6bbb06a7da4e93e45a15a0ebd38d116b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 239952
+  packageName: pixel low poly contemporary househouse
+  packageVersion: 2
+  assetPath: Assets/contemporary house/scripits/PlayerController.cs
+  uploadId: 611257
