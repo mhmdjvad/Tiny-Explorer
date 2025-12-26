@@ -129,6 +129,14 @@ public class DoorTriggerSecond : MonoBehaviour
         {
             uiManager.ShowPressE(false);
             uiManager.ShowAlert(false);
+
+            // Fade key icon on HUD
+            string keyTag = "";
+            if (doorType == KeyRequired.Bedroom) keyTag = "BedRoom_key";
+            else if (doorType == KeyRequired.Bathroom) keyTag = "BathRoom_key";
+            else if (doorType == KeyRequired.Exit) keyTag = "ExitDoor_key";
+            
+            uiManager.UseKey(keyTag);
         }
 
         Collider col = GetComponent<Collider>();

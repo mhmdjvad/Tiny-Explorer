@@ -57,6 +57,13 @@ public class KeyInventoryUISecond : MonoBehaviour
         }
     }
 
+    public void UseKey(string keyTag)
+    {
+        if (keyTag == "BedRoom_key" && bedKeyUI != null) bedKeyUI.style.opacity = 0.3f;
+        else if (keyTag == "BathRoom_key" && bathKeyUI != null) bathKeyUI.style.opacity = 0.3f;
+        else if (keyTag == "ExitDoor_key" && exitKeyUI != null) exitKeyUI.style.opacity = 0.3f;
+    }
+
     public void ShowPressE(bool show) { 
         if(pressELabel != null) pressELabel.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
     }

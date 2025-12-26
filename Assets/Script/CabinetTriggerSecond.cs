@@ -11,7 +11,7 @@ public class CabinetTriggerSecond : MonoBehaviour
     public Vector3 openRotationAngle = new Vector3(0, 90, 0);
 
     [Header("Sliding Settings")]
-    public Vector3 slideOffset = new Vector3(0, 0, 0.5f); // Amount to move for drawers
+    public Vector3 slideOffset = new Vector3(0, 0, 0.5f);
 
     public float openSpeed = 2f;
 
@@ -27,6 +27,8 @@ public class CabinetTriggerSecond : MonoBehaviour
 
     public AudioClip openSound;
 
+    private float currentT = 0f;
+
     void Start()
     {
         uiManager = FindObjectOfType<KeyInventoryUISecond>();
@@ -40,18 +42,6 @@ public class CabinetTriggerSecond : MonoBehaviour
             // Initialize Position Data
             initialPosition = doorModel.transform.localPosition;
             targetPosition = initialPosition + slideOffset;
-            
-            Debug.Log($"[CabinetDebug] Initialized. MotionType: {motionType}. StartPos: {initialPosition}, TargetPos: {targetPosition}");
-
-            // Check for Animator
-            if (doorModel.GetComponent<Animator>() != null)
-            {
-                Debug.LogWarning($"[CabinetDebug] WARNING: {doorModel.name} has an Animator! This will stop the script from moving it. Please disable the Animator or remove it.");
-            }
-        }
-        else
-        {
-            Debug.LogError("[CabinetDebug] DoorModel is NOT assigned!");
         }
     }
 
@@ -60,49 +50,35 @@ public class CabinetTriggerSecond : MonoBehaviour
         // Simple Interaction: Press E to open (No key required)
         if (isPlayerInside && !isOpening && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("[CabinetDebug] E pressed inside trigger.");
             StartOpeningSequence();
         }
 
         // Execute animation
         if (isOpening && doorModel != null)
         {
+            currentT += Time.deltaTime * openSpeed;
+            float clampedT = Mathf.Clamp01(currentT);
+
             if (motionType == MotionType.Rotate)
             {
-                // Rotation Logic
-                doorModel.transform.localRotation = Quaternion.Slerp(doorModel.transform.localRotation, targetRotation, Time.deltaTime * openSpeed);
-                float angleLeft = Quaternion.Angle(doorModel.transform.localRotation, targetRotation);
-                Debug.Log($"[CabinetDebug] Rotating... Angle remaining: {angleLeft}");
-
-                if (angleLeft < 1f)
-                {
-                    doorModel.transform.localRotation = targetRotation;
-                    FinalizeOpening();
-                }
+                doorModel.transform.localRotation = Quaternion.Slerp(initialRotation, targetRotation, clampedT);
             }
             else // MotionType.Slide
             {
-                // Sliding Logic
-                doorModel.transform.localPosition = Vector3.Lerp(doorModel.transform.localPosition, targetPosition, Time.deltaTime * openSpeed);
-                float dist = Vector3.Distance(doorModel.transform.localPosition, targetPosition);
-                Debug.Log($"[CabinetDebug] Sliding... Distance remaining: {dist}");
+                doorModel.transform.localPosition = Vector3.Lerp(initialPosition, targetPosition, clampedT);
+            }
 
-                if (dist < 0.01f)
-                {
-                    doorModel.transform.localPosition = targetPosition;
-                    FinalizeOpening();
-                }
+            if (currentT >= 1f)
+            {
+                FinalizeOpening();
             }
         }
     }
 
     private void FinalizeOpening()
     {
-        Debug.Log("[CabinetDebug] Opening Finished.");
         isOpening = false;
         
-        // Safer approach: Disable only the trigger and interaction, not the entire GameObject
-        // This prevents the mesh from disappearing if the script is on the door itself.
         Collider col = GetComponent<Collider>();
         if (col != null) col.enabled = false;
         
@@ -113,7 +89,6 @@ public class CabinetTriggerSecond : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("[CabinetDebug] Player Entered Trigger.");
             isPlayerInside = true;
             if (uiManager != null)
             {
@@ -126,7 +101,6 @@ public class CabinetTriggerSecond : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("[CabinetDebug] Player Exited Trigger.");
             isPlayerInside = false;
             if (uiManager != null)
             {
@@ -137,7 +111,6 @@ public class CabinetTriggerSecond : MonoBehaviour
 
     private void StartOpeningSequence()
     {
-        Debug.Log("[CabinetDebug] Starting Opening Sequence...");
         isOpening = true;
 
         if (openSound != null)
