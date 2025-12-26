@@ -70,4 +70,12 @@ public class KeyInventoryUI : MonoBehaviour
         if (show) alertLabel.text = message;
         alertLabel.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
     }
+
+    public void UseKey(string keyTag)
+    {
+        if (keyTag == "BedRoom_key" && bedKeyUI != null) bedKeyUI.style.opacity = 0.3f;
+        else if (keyTag == "BathRoom_key" && bathKeyUI != null) bathKeyUI.style.opacity = 0.3f;
+        else if (keyTag == "ExitDoor_key" && exitKeyUI != null) exitKeyUI.style.opacity = 0.3f;
+    }
+
 }
