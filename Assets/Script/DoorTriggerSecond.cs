@@ -5,8 +5,7 @@ public class DoorTriggerSecond : MonoBehaviour
     public enum KeyRequired { Bedroom, Bathroom, Exit }
     public KeyRequired doorType;
 
-    public GameObject doorModel;
-    public GameObject doorModel2;
+    public GameObject doorModel1;
     
     [Header("Rotation Settings")]
     public Vector3 openRotationAngle = new Vector3(0, 90, 0); 
@@ -24,9 +23,9 @@ public class DoorTriggerSecond : MonoBehaviour
     {
         uiManager = FindObjectOfType<KeyInventoryUISecond>();
 
-        if (doorModel != null)
+        if (doorModel1 != null)
         {
-            initialRotation = doorModel.transform.localRotation;
+            initialRotation = doorModel1.transform.localRotation;
             targetRotation = initialRotation * Quaternion.Euler(openRotationAngle);
         }
     }
@@ -43,13 +42,13 @@ public class DoorTriggerSecond : MonoBehaviour
         }
 
         // Execute door rotation
-        if (isOpening && doorModel != null)
+        if (isOpening && doorModel1 != null)
         {
-            doorModel.transform.localRotation = Quaternion.Slerp(doorModel.transform.localRotation, targetRotation, Time.deltaTime * openSpeed);
+            doorModel1.transform.localRotation = Quaternion.Slerp(doorModel1.transform.localRotation, targetRotation, Time.deltaTime * openSpeed);
 
-            if (Quaternion.Angle(doorModel.transform.localRotation, targetRotation) < 1f)
+            if (Quaternion.Angle(doorModel1.transform.localRotation, targetRotation) < 1f)
             {
-                doorModel.transform.localRotation = targetRotation;
+                doorModel1.transform.localRotation = targetRotation;
                 isOpening = false;
                 gameObject.SetActive(false); // Disable trigger
             }
@@ -123,7 +122,7 @@ public class DoorTriggerSecond : MonoBehaviour
 
         if (openSound != null)
         {
-            AudioSource.PlayClipAtPoint(openSound, doorModel.transform.position);
+            AudioSource.PlayClipAtPoint(openSound, doorModel1.transform.position);
         }
 
         if (uiManager != null)
