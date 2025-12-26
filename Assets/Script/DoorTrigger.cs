@@ -119,6 +119,21 @@ public class DoorTrigger : MonoBehaviour
             AudioSource.PlayClipAtPoint(openSound, doorModel.transform.position);
         }
 
+        // low capacity key
+        if (uiManager != null)
+        {
+            uiManager.ShowPressE(false);
+            uiManager.ShowAlert(false);
+
+            // Fade key icon on HUD
+            string keyTag = "";
+            if (doorType == KeyRequired.Bedroom) keyTag = "BedRoom_key";
+            else if (doorType == KeyRequired.Bathroom) keyTag = "BathRoom_key";
+            else if (doorType == KeyRequired.Exit) keyTag = "ExitDoor_key";
+
+            uiManager.UseKey(keyTag);
+        }
+        
         // مخفی کردن پیام‌ها بلافاصله بعد از زدن دکمه
         uiManager.ShowPressE(false);
         uiManager.ShowAlert(false);
