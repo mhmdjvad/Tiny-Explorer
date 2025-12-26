@@ -14,6 +14,8 @@ public class DoorTrigger : MonoBehaviour
     private bool isOpening = false;
     private Vector3 targetPosition;
 
+    public AudioClip openSound;
+
     void Start()
     {
         uiManager = FindObjectOfType<KeyInventoryUI>();
@@ -110,6 +112,12 @@ public class DoorTrigger : MonoBehaviour
     private void StartOpeningSequence()
     {
         isOpening = true;
+
+        if (openSound != null)
+        {
+            // پخش صدا در محل در
+            AudioSource.PlayClipAtPoint(openSound, doorModel.transform.position);
+        }
 
         // مخفی کردن پیام‌ها بلافاصله بعد از زدن دکمه
         uiManager.ShowPressE(false);

@@ -971,7 +971,8 @@ MonoBehaviour:
   doorType: 1
   doorModel: {fileID: 1491790742}
   openOffset: {x: 1.3, y: 0, z: 0}
-  openSpeed: 1
+  openSpeed: 1.5
+  openSound: {fileID: 8300000, guid: bff509163906d1848920db95f454960d, type: 3}
 --- !u!65 &166226899
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4409,7 +4410,8 @@ MonoBehaviour:
   doorType: 2
   doorModel: {fileID: 476132346}
   openOffset: {x: 0, y: 0, z: 1.3}
-  openSpeed: 1
+  openSpeed: 1.5
+  openSound: {fileID: 8300000, guid: bff509163906d1848920db95f454960d, type: 3}
 --- !u!65 &537961207
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16147,7 +16149,8 @@ MonoBehaviour:
   doorType: 0
   doorModel: {fileID: 1398657622}
   openOffset: {x: 1.3, y: 0, z: 0}
-  openSpeed: 1
+  openSpeed: 1.5
+  openSound: {fileID: 8300000, guid: bff509163906d1848920db95f454960d, type: 3}
 --- !u!65 &1959111536
 BoxCollider:
   m_ObjectHideFlags: 0
