@@ -10753,10 +10753,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: pine ferais (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6275505779266770377, guid: e3be53000fe664e4897ac5cfb879e720, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275505779266770377, guid: e3be53000fe664e4897ac5cfb879e720, type: 3}
+      propertyPath: m_TagString
+      value: pushable
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275505779266770377, guid: e3be53000fe664e4897ac5cfb879e720, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756379649120461731, guid: e3be53000fe664e4897ac5cfb879e720, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6275505779266770377, guid: e3be53000fe664e4897ac5cfb879e720, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2128315613}
   m_SourcePrefab: {fileID: 100100000, guid: e3be53000fe664e4897ac5cfb879e720, type: 3}
 --- !u!4 &1300066167 stripped
 Transform:
@@ -17063,6 +17082,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3756c84dd3befaa47aad15c33de6ac27, type: 3}
+--- !u!1 &2128315609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6275505779266770377, guid: e3be53000fe664e4897ac5cfb879e720, type: 3}
+  m_PrefabInstance: {fileID: 1297464861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &2128315613
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128315609}
+  serializedVersion: 4
+  m_Mass: 0.66
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 1
+  m_Constraints: 116
+  m_CollisionDetection: 3
 --- !u!1 &2135423036
 GameObject:
   m_ObjectHideFlags: 0
@@ -18601,16 +18652,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
   - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
   FootstepAudioVolume: 0.3
-  JumpHeight: 1
-  Gravity: -8
-  JumpTimeout: 0.3
+  JumpHeight: 1.5
+  Gravity: -15
+  JumpTimeout: 0.15
   FallTimeout: 0.15
   Grounded: 1
   GroundedOffset: -0.14
   GroundedRadius: 0.28
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 9
   CinemachineCameraTarget: {fileID: 8338988565591873048}
   TopClamp: 70
   BottomClamp: -30
@@ -19114,9 +19165,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushLayers:
     serializedVersion: 2
-    m_Bits: 0
-  canPush: 0
-  strength: 1.1
+    m_Bits: 8
+  canPush: 1
+  strength: 10
 --- !u!1 &5930158855832182407
 GameObject:
   m_ObjectHideFlags: 0
