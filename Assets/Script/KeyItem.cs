@@ -7,7 +7,7 @@ public class KeyItem : MonoBehaviour
     void Update()
     {
         // خط کد برای چرخش همیشگی کلید به دور خودش (محور Y)
-        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+        transform.Rotate(new Vector3(0, 0, 90) * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
