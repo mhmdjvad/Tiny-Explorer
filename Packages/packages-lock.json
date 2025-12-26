@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.antigravity.ide": {
+      "version": "https://github.com/prithvi-bharadwaj/Antigravity-IDE.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "052001cf62c44b1af3d8bd6339939f5f2c34966d"
+    },
+    "com.coplaydev.unity-mcp": {
+      "version": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
+      },
+      "hash": "8e3bd1d70c17d6b550eddb2164b4ebf0153242fc"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.9",
       "depth": 0,
@@ -98,6 +114,13 @@
     "com.unity.nuget.mono-cecil": {
       "version": "1.11.4",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
