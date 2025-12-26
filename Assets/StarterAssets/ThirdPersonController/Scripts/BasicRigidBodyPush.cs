@@ -6,9 +6,35 @@ public class BasicRigidBodyPush : MonoBehaviour
 	public bool canPush;
 	[Range(0.5f, 10f)] public float strength = 1.1f;
 
+	private StarterAssets.ThirdPersonController _controller;
+	private float _pushTimeThreshold = 0.1f; // Time to keep animation active
+	private float _currentPushTimer;
+
+	void Start()
+	{
+		_controller = GetComponent<StarterAssets.ThirdPersonController>();
+		Debug.Log("[PushDebug] BasicRigidBodyPush Started on: " + gameObject.name);
+	}
+
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
 		if (canPush) PushRigidBodies(hit);
+	}
+
+	private void LateUpdate()
+	{
+		if (_controller != null)
+		{
+			if (_currentPushTimer > 0)
+			{
+				_controller.IsPushing = true;
+				_currentPushTimer -= Time.deltaTime;
+			}
+			else
+			{
+				_controller.IsPushing = false;
+			}
+		}
 	}
 
 
@@ -34,6 +60,10 @@ public class BasicRigidBodyPush : MonoBehaviour
         {
             // فقط اگر راه باز بود، حرکت کن
             body.MovePosition(body.position + (pushDir * moveDistance));
+            
+            // Signal pushing with timer to avoid flickering
+            _currentPushTimer = _pushTimeThreshold;
+            Debug.Log("[PushDebug] Moving object: " + body.name);
         }
         else
         {
