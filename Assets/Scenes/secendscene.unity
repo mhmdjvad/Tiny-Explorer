@@ -317,15 +317,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.3465
+      value: -9.57
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.389
+      value: 2.926
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.851
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalRotation.w
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorType: 2
   doorModel1: {fileID: 1767088422}
-  openRotationAngle: {x: 0, y: 90, z: 0}
+  openRotationAngle: {x: 0, y: -90, z: 0}
   openSpeed: 2
   openSound: {fileID: 8300000, guid: bff509163906d1848920db95f454960d, type: 3}
 --- !u!1 &542508511
@@ -1656,6 +1656,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010389856214, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1000012403556238, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -1790,6 +1794,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1000013392452400, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1915591451}
+    - targetCorrespondingSourceObject: {fileID: 1000010389856214, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1625569992}
     - targetCorrespondingSourceObject: {fileID: 1000012541020350, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1115932482}
@@ -1874,15 +1881,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.428
+      value: 12.3465
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.33
+      value: 3.389
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.41
+      value: -8.851
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2240,6 +2247,32 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1625569987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000010389856214, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
+  m_PrefabInstance: {fileID: 1281499739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1625569992
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625569987}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.1213207, y: 2.5, z: 1.1260984}
+  m_Center: {x: 0.002419472, y: 1.2502918, z: -0.48982766}
 --- !u!1 &1764214107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2699,6 +2732,7 @@ MonoBehaviour:
   hasBedKey: 0
   hasBathKey: 0
   hasExitKey: 0
+  transitionSound: {fileID: 0}
 --- !u!114 &2045829998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2713,7 +2747,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBedKey: 0
   hasBathKey: 0
-  hasExitKey: 0
+  hasExitKey: 1
+  transitionSound: {fileID: 8300000, guid: 34d45ae8f1ca54a32be72455f7ca041c, type: 3}
 --- !u!4 &117881534856477948
 Transform:
   m_ObjectHideFlags: 0
@@ -4025,8 +4060,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
   - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
   FootstepAudioVolume: 0.3
-  JumpHeight: 0.8
-  Gravity: -4
+  JumpHeight: 1.5
+  Gravity: -10
   JumpTimeout: 0.3
   FallTimeout: 0.15
   Grounded: 1
