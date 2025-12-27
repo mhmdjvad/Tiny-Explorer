@@ -13,6 +13,10 @@ public class Main_menu : MonoBehaviour
 
     void OnEnable()
     {
+        // Unlock and show cursor when menu is enabled
+        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+
         // 1. گرفتن ریشه UI
         var uiDocument = GetComponent<UIDocument>();
         if (uiDocument == null) return;
