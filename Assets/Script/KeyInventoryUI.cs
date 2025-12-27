@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine.UIElements;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class KeyInventoryUI : MonoBehaviour
 {
@@ -7,11 +9,15 @@ public class KeyInventoryUI : MonoBehaviour
 
     //For Doors
     private Label pressELabel, alertLabel;
+    private VisualElement fadeOverlay;
 
     // متغیرهایی برای ذخیره داشتن یا نداشتن کلید
     public bool hasBedKey = false;
     public bool hasBathKey = false;
     public bool hasExitKey = false;
+    
+    [Header("Transition Settings")]
+    public AudioClip transitionSound;
 
     void OnEnable()
     {
@@ -40,6 +46,16 @@ public class KeyInventoryUI : MonoBehaviour
 
         pressELabel.style.display = DisplayStyle.None;
         alertLabel.style.display = DisplayStyle.None;
+
+        // Create Fade Overlay Programmatically
+        fadeOverlay = new VisualElement();
+        fadeOverlay.style.position = Position.Absolute;
+        fadeOverlay.style.width = Length.Percent(100);
+        fadeOverlay.style.height = Length.Percent(100);
+        fadeOverlay.style.backgroundColor = Color.white;
+        fadeOverlay.style.opacity = 0f;
+        fadeOverlay.pickingMode = PickingMode.Ignore; // Don't block clicks while invisible
+        root.Add(fadeOverlay);
     }
 
     // این متد توسط کلیدها صدا زده می‌شود
@@ -78,4 +94,32 @@ public class KeyInventoryUI : MonoBehaviour
         else if (keyTag == "ExitDoor_key" && exitKeyUI != null) exitKeyUI.style.opacity = 0.3f;
     }
 
+    public void StartSceneTransition()
+    {
+        if (transitionSound != null)
+        {
+            AudioSource.PlayClipAtPoint(transitionSound, Camera.main.transform.position);
+        }
+        
+        fadeOverlay.pickingMode = PickingMode.Position; // Block interaction
+        StartCoroutine(FadeToWhiteAndLoad());
+    }
+
+    private IEnumerator FadeToWhiteAndLoad()
+    {
+        float duration = 2.5f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            fadeOverlay.style.opacity = Mathf.Lerp(0f, 1f, elapsed / duration);
+            yield return null;
+        }
+
+        fadeOverlay.style.opacity = 1f;
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene("secendscene");
+    }
 }

@@ -1,5 +1,7 @@
-using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class KeyInventoryUISecond : MonoBehaviour
 {
@@ -7,11 +9,20 @@ public class KeyInventoryUISecond : MonoBehaviour
 
     //For Doors
     private Label pressELabel, alertLabel;
+    private VisualElement fadeOverlay;
 
     // Variables to store key status
     public bool hasBedKey = false;
     public bool hasBathKey = false;
     public bool hasExitKey = false;
+
+    [Header("Transition Settings")]
+    public AudioClip transitionSound;
+
+    void Start()
+    {
+        StartCoroutine(FadeInFromWhite());
+    }
 
     void OnEnable()
     {
@@ -39,6 +50,16 @@ public class KeyInventoryUISecond : MonoBehaviour
 
         if(pressELabel != null) pressELabel.style.display = DisplayStyle.None;
         if(alertLabel != null) alertLabel.style.display = DisplayStyle.None;
+
+        // Create Fade Overlay for Fade-In effect
+        fadeOverlay = new VisualElement();
+        fadeOverlay.style.position = Position.Absolute;
+        fadeOverlay.style.width = Length.Percent(100);
+        fadeOverlay.style.height = Length.Percent(100);
+        fadeOverlay.style.backgroundColor = Color.white;
+        fadeOverlay.style.opacity = 1f; // Start fully white
+        fadeOverlay.pickingMode = PickingMode.Ignore;
+        root.Add(fadeOverlay);
     }
 
     public void ShowKeyOnUI(string keyTag)
@@ -73,5 +94,61 @@ public class KeyInventoryUISecond : MonoBehaviour
         Debug.Log(message);
         if (show && alertLabel != null) alertLabel.text = message;
         if(alertLabel != null) alertLabel.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+    }
+
+    private IEnumerator FadeInFromWhite()
+    {
+        yield return new WaitForSeconds(0.5f); // Short pause before starting
+
+        float duration = 2.0f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            if (fadeOverlay != null)
+                fadeOverlay.style.opacity = Mathf.Lerp(1f, 0f, elapsed / duration);
+            yield return null;
+        }
+
+        if (fadeOverlay != null)
+        {
+            fadeOverlay.style.opacity = 0f;
+            fadeOverlay.style.display = DisplayStyle.None; // Remove completely
+        }
+    }
+
+    public void StartSceneTransition()
+    {
+        if (transitionSound != null)
+        {
+            AudioSource.PlayClipAtPoint(transitionSound, Camera.main.transform.position);
+        }
+
+        if (fadeOverlay != null)
+        {
+            fadeOverlay.style.display = DisplayStyle.Flex;
+            fadeOverlay.pickingMode = PickingMode.Position; // Block interaction
+            StartCoroutine(FadeToWhiteAndLoad());
+        }
+    }
+
+    private IEnumerator FadeToWhiteAndLoad()
+    {
+        float duration = 2.5f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            if (fadeOverlay != null)
+                fadeOverlay.style.opacity = Mathf.Lerp(0f, 1f, elapsed / duration);
+            yield return null;
+        }
+
+        if (fadeOverlay != null) fadeOverlay.style.opacity = 1f;
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene("Main-Menu");
     }
 }

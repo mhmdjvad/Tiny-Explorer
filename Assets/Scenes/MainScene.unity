@@ -16676,15 +16676,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -44.83
+      value: -45.213
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.57
+      value: 10.37
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.79
+      value: -9.27
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22878,6 +22878,7 @@ MonoBehaviour:
   hasBedKey: 0
   hasBathKey: 0
   hasExitKey: 0
+  transitionSound: {fileID: 8300000, guid: fec7dce416a9f45fdb8249452ffc40c4, type: 3}
 --- !u!1001 &2050526440
 PrefabInstance:
   m_ObjectHideFlags: 0

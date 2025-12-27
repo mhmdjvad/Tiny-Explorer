@@ -142,6 +142,12 @@ public class DoorTriggerSecond : MonoBehaviour
         Collider col = GetComponent<Collider>();
         if (col != null) col.enabled = false;
 
+        // Trigger Final Transition if this is the Exit door
+        if (doorType == KeyRequired.Exit && uiManager != null)
+        {
+            uiManager.StartSceneTransition();
+        }
+
         Debug.Log("Door is opening (Second Scene Rotation)...");
     }
 }
